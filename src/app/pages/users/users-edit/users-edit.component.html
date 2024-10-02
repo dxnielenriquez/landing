@@ -1,0 +1,75 @@
+<div class="surface-card shadow-2 border-round ">
+  <div class="header flex justify-content-between align-items-center">
+    <span class="header-title">{{ isCreateMode ? 'Guardar ' : 'Actualizar ' }} usuario</span>
+    <div>
+    <button pButton pRipple icon="pi pi-user-plus" (click)="backRoute()"
+            class="p-element mr-2 custom-button sm:w-auto flex-order-0 sm:flex-order-2">
+      <i class="p-button-icon pi pi-arrow-left" aria-hidden="true"></i>
+      <span class="p-button-label pl-1">Regresar</span>
+    </button>
+    <button pButton pRipple icon="pi pi-user-plus" (click)="onSubmit()"
+            class="p-element custom-button sm:w-auto flex-order-0 sm:flex-order-2">
+      <i class="p-button-icon pi pi-save" aria-hidden="true"></i>
+      <span class="p-button-label pl-1">{{ isCreateMode ? 'Guardar ' : 'Actualizar ' }}</span>
+    </button>
+    </div>
+  </div>
+  <div class="card p-5">
+    <form class="form" [formGroup]="form" autocomplete="off">
+      <div class="mb-4">
+        <p-floatLabel>
+          <input id="titulo" formControlName="titulo" type="text" pInputText
+                 class="w-full">
+          <label for="titulo">Título</label>
+        </p-floatLabel>
+        <small *ngIf="isControlHasError('titulo','required')" class="text-red-400">
+          El título es requerido.</small>
+      </div>
+
+      <div class="mb-4">
+        <p-floatLabel>
+          <input id="descripcion" formControlName="descripcion" type="text" pInputText
+                 class="w-full">
+          <label for="descripcion">Descripción</label>
+        </p-floatLabel>
+        <small *ngIf="isControlHasError('descripcion','required')" class="text-red-400">
+          La descripción es requerida.</small>
+      </div>
+
+      <div class="mb-4">
+        <p-floatLabel>
+          <input id="ponderacion_baja" formControlName="ponderacion_baja" type="text" pInputText
+                 class="w-full">
+          <label for="ponderacion_baja">Criterio mínimo</label>
+        </p-floatLabel>
+        <small *ngIf="isControlHasError('ponderacion_baja','required')" class="text-red-400">
+          El criterio es requerido.</small>
+      </div>
+
+      <div class="mb-4">
+        <p-floatLabel>
+          <input id="ponderacion_alta" formControlName="ponderacion_alta" type="text" pInputText
+                 class="w-full">
+          <label for="ponderacion_alta">Criterio máximo</label>
+        </p-floatLabel>
+        <small *ngIf="isControlHasError('ponderacion_alta','required')" class="text-red-400">
+          El criterio es requerido.</small>
+      </div>
+
+      <div class="mb-4">
+        <p-floatLabel>
+          <p-dropdown
+            [options]="roles"
+            optionLabel="name"
+            optionValue="id"
+            formControlName="role_id"
+            id="role_id"
+            [style]="{'width': '100%'}"/>
+          <label for="role_id">Destinatario</label>
+        </p-floatLabel>
+        <small *ngIf="isControlHasError('role_id','required')" class="text-red-400">
+          El destinatario es requerido.</small>
+      </div>
+    </form>
+  </div>
+</div>
