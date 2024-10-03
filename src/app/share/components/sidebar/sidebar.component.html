@@ -1,60 +1,9 @@
 <main>
 
   <div>
+    <app-navbar></app-navbar>
+
     <mat-sidenav-container class=" mat-drawer-container" autosize>
-      <mat-sidenav disableClose="true" #sidenav *ngIf="!isMobileView" class="example-sidenav fixed" mode="side"
-                   opened="true" (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
-        <mat-nav-list class="mat-nav-list">
-          <mat-list-item class="p-0 custom-border" style="border-radius: 0 !important;" disabled>
-            <div class="menu-item-container justify-content-center">
-              <img *ngIf="!isShowing" src="favicon.ico" alt="logo.png" width="52" height="38" class="">
-              <span class="title" *ngIf="isShowing"> Gastiganto </span>
-            </div>
-          </mat-list-item>
-          <br>
-          <!-- first level -->
-          <ng-container *ngFor="let menuItem of menuItems">
-            <mat-list-item (click)="toggleMenuItem(menuItem)" [routerLink]="menuItem.route">
-              <div class="menu-item-container">
-                <i class="pi" [ngClass]="menuItem.icon" style="font-size: 1.2rem"></i>
-                <span class="full-width " *ngIf="isShowing">{{ menuItem.label }}</span>
-                <i *ngIf="menuItem.expandable && isShowing" class="pi"
-                   [ngClass]="menuItem.expanded ? 'pi-chevron-up' : 'pi-chevron-down'"
-                   style="font-size: .6rem"></i>
-              </div>
-            </mat-list-item>
-            <!-- second level -->
-            <div class="submenu align-self-center" [ngClass]="{'expanded' : menuItem.expanded}"
-                 *ngIf="menuItem.expandable && isShowing">
-              <ng-container *ngFor="let subItem of menuItem.subItems">
-                <mat-list-item (click)="toggleMenuItem(subItem)" class="parent" [routerLink]="subItem.route">
-                  <div class="menu-item-container">
-                    <i class="pi" [ngClass]="subItem.icon" style="font-size: 1rem"></i>
-                    <span class="full-width ">{{ subItem.label }}</span>
-                    <i *ngIf="subItem.expandable" class="pi"
-                       [ngClass]="subItem.expanded ? 'pi-chevron-up' : 'pi-chevron-down'"
-                       style="font-size: .5rem"></i>
-                  </div>
-                </mat-list-item>
-                <!-- third level -->
-                <div class="submenu align-self-end" [ngClass]="{'expanded' : subItem.expanded}"
-                     *ngIf="subItem.expandable">
-                  <ng-container *ngFor="let subsubItem of subItem.subItems">
-                    <mat-list-item (click)="toggleMenuItem(subItem)" class="parent" [routerLink]="subsubItem.route">
-                      <div class="menu-item-container">
-                        <i class="pi" [ngClass]="subsubItem.icon" style="font-size: 1rem"></i>
-                        <span class="full-width colorletra">{{ subsubItem.label }}</span>
-                        <i *ngIf="subsubItem.expandable" class="pi" style="font-size: .5rem"
-                           [ngClass]="subsubItem.expanded ? 'pi-chevron-up' : 'pi-chevron-down'"></i>
-                      </div>
-                    </mat-list-item>
-                  </ng-container>
-                </div>
-              </ng-container>
-            </div>
-          </ng-container>
-        </mat-nav-list>
-      </mat-sidenav>
       <mat-sidenav-content class="mat-drawer-content">
         <app-header></app-header>
         <div class="p-3 m-3 content-height">

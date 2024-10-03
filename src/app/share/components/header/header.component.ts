@@ -2,8 +2,6 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {PrimeModule} from "../../prime/prime.module";
 import {MenubarModule} from "primeng/menubar";
 import {MenuItem} from "primeng/api";
-import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
 import {OverlayPanelModule} from "primeng/overlaypanel";
 
 @Component({
@@ -19,11 +17,8 @@ export class HeaderComponent implements OnInit {
   username = '';
 
   constructor(
-    private auth: AuthService,
-    private router: Router
   ) {
 
-    this.username = auth.getUser()!.nombre
   }
 
   @HostListener('window:resize', ['$event'])
@@ -57,8 +52,5 @@ export class HeaderComponent implements OnInit {
     this.isMobileView = window.innerWidth <= 960;
   }
 
-  logOut(): void {
-    this.auth.logout();
-    this.router.navigate(["/"]).then();
-  }
+
 }

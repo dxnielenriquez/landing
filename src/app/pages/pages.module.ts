@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: SidebarComponent,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     children: [
       {
         path: 'dashboard',

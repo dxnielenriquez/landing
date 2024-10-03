@@ -1,11 +1,13 @@
 import {AfterViewInit, Component} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -16,6 +18,7 @@ export class NavbarComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.initializeNavbar();
   }
+
 
   private initializeNavbar() {
     // Navbar shrink function

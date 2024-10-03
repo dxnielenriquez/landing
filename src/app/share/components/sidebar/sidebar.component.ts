@@ -5,6 +5,7 @@ import {FooterComponent} from "../footer/footer.component";
 import {DividerModule} from "primeng/divider";
 import {MaterialModule} from "../../material/material.module";
 import {CommonModule} from "@angular/common";
+import {NavbarComponent} from "../navbar/navbar.component";
 
 export interface MenuItem {
   label: string;
@@ -18,7 +19,7 @@ export interface MenuItem {
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, MaterialModule, RouterModule, HeaderComponent, FooterComponent, DividerModule],
+  imports: [CommonModule, MaterialModule, RouterModule, HeaderComponent, FooterComponent, DividerModule, NavbarComponent],
   providers: [],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
