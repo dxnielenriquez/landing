@@ -3,9 +3,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {LoginComponent} from "../share/components/login/login.component";
 import {SidebarComponent} from "../share/components/sidebar/sidebar.component";
-import {UsersComponent} from "./users/users-list/users.component";
 import {authGuard} from "../share/guards/auth.guard";
-import {UsersEditComponent} from "./users/users-edit/users-edit.component";
 import {ServicesComponent} from "./services/services.component";
 
 const routes: Routes = [
@@ -40,18 +38,7 @@ const routes: Routes = [
     component: SidebarComponent,
     canActivate: [authGuard],
     children: [
-      {
-        path: 'users',
-        component: UsersComponent,
-      },
-      {
-        path: 'users/add',
-        component: UsersEditComponent,
-      },
-      {
-        path: 'users/edit/:id',
-        component: UsersEditComponent,
-      },
+
     ]
   },
   {path: '**', redirectTo: 'auth/login', pathMatch: 'full'}
