@@ -6,6 +6,7 @@ import {SidebarComponent} from "../share/components/sidebar/sidebar.component";
 import {UsersComponent} from "./users/users-list/users.component";
 import {authGuard} from "../share/guards/auth.guard";
 import {UsersEditComponent} from "./users/users-edit/users-edit.component";
+import {ServicesComponent} from "./services/services.component";
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent,
       },
-      
+
     ]
   },
   {
@@ -27,6 +28,11 @@ const routes: Routes = [
         path: 'dashboard',
         component: DashboardComponent,
       },
+      {
+        path: 'services',
+        component: ServicesComponent,
+      }
+
     ]
   },
   {
@@ -54,11 +60,14 @@ const routes: Routes = [
 @NgModule({
 
   declarations: [
+
   ],
   imports: [
     RouterModule.forChild(routes),
   ],
   bootstrap: [],
+  exports: [
+  ]
 })
 export class PagesModule {
 }

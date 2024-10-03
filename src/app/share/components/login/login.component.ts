@@ -6,11 +6,12 @@ import {AuthService} from "../../services/auth.service";
 import {ToastModule} from "primeng/toast";
 import {PrimeModule} from "../../prime/prime.module";
 import {NavbarComponent} from "../navbar/navbar.component";
+import {ServicesComponent} from "../../../pages/services/services.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [PrimeModule, ShareModule, ToastModule, NavbarComponent],
+  imports: [PrimeModule, ShareModule, ToastModule, NavbarComponent, ServicesComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

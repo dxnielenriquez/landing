@@ -12,7 +12,6 @@ import {UsersService} from "../users.service";
 import {ConfirmationService, MessageService, PrimeNGConfig} from "primeng/api";
 import {Ripple} from "primeng/ripple";
 import {RouterLink} from "@angular/router";
-import {ModalAlertComponent} from "../../../share/components/modals/modal-alert/modal-alert.component";
 import {MatTooltip} from "@angular/material/tooltip";
 import {TooltipModule} from "primeng/tooltip";
 import {LoadingService} from "../../../share/services/loading.service";
@@ -21,7 +20,7 @@ import {NgxPermissionsModule} from "ngx-permissions";
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CommonModule, TableModule, TagModule, IconFieldModule, InputIconModule, InputTextModule, ButtonDirective, PasswordModule, FormsModule, Button, Ripple, RouterLink, ModalAlertComponent, MatTooltip, TooltipModule, NgxPermissionsModule],
+  imports: [CommonModule, TableModule, TagModule, IconFieldModule, InputIconModule, InputTextModule, ButtonDirective, PasswordModule, FormsModule, Button, Ripple, RouterLink,  MatTooltip, TooltipModule, NgxPermissionsModule],
   providers: [ConfirmationService, MessageService, LoadingService],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
