@@ -5,6 +5,7 @@ import {LoginComponent} from "../share/components/login/login.component";
 import {SidebarComponent} from "../share/components/sidebar/sidebar.component";
 import {authGuard} from "../share/guards/auth.guard";
 import {ServicesComponent} from "./services/services.component";
+import {PortafolioComponent} from "./portafolio/portafolio.component";
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: SidebarComponent,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     children: [
       {
         path: 'dashboard',
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path: 'services',
         component: ServicesComponent,
+      },
+      {
+        path: 'portafolio',
+        component: PortafolioComponent,
       }
 
     ]
@@ -47,6 +52,7 @@ const routes: Routes = [
 @NgModule({
 
   declarations: [
+
 
   ],
   imports: [

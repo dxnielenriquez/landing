@@ -7,11 +7,12 @@ import {PrimeModule} from "../../prime/prime.module";
 import {NavbarComponent} from "../navbar/navbar.component";
 import {ServicesComponent} from "../../../pages/services/services.component";
 import {FooterComponent} from "../footer/footer.component";
+import {PortafolioComponent} from "../../../pages/portafolio/portafolio.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [PrimeModule, ShareModule, ToastModule, NavbarComponent, ServicesComponent, FooterComponent],
+  imports: [PrimeModule, ShareModule, ToastModule, NavbarComponent, ServicesComponent, FooterComponent, PortafolioComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
