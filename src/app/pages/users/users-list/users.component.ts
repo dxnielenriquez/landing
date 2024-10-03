@@ -14,14 +14,13 @@ import {Ripple} from "primeng/ripple";
 import {RouterLink} from "@angular/router";
 import {MatTooltip} from "@angular/material/tooltip";
 import {TooltipModule} from "primeng/tooltip";
-import {LoadingService} from "../../../share/services/loading.service";
 import {NgxPermissionsModule} from "ngx-permissions";
 
 @Component({
   selector: 'app-users',
   standalone: true,
   imports: [CommonModule, TableModule, TagModule, IconFieldModule, InputIconModule, InputTextModule, ButtonDirective, PasswordModule, FormsModule, Button, Ripple, RouterLink,  MatTooltip, TooltipModule, NgxPermissionsModule],
-  providers: [ConfirmationService, MessageService, LoadingService],
+  providers: [ConfirmationService, MessageService],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
 })
@@ -38,7 +37,7 @@ export class UsersComponent implements OnInit {
     private primeConfig: PrimeNGConfig,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private _loading: LoadingService) {
+    ) {
     this.primeConfig.ripple = true;
   }
 
