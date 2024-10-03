@@ -2,8 +2,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {LoginComponent} from "../share/components/login/login.component";
-import {AuthService} from "../share/services/auth.service";
-import {SignupComponent} from "../share/components/signup/signup.component";
 import {ForgotPasswordComponent} from "../share/components/forgot-password/forgot-password.component";
 import {SidebarComponent} from "../share/components/sidebar/sidebar.component";
 import {UsersComponent} from "./users/users-list/users.component";
@@ -17,10 +15,6 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
-      },
-      {
-        path: 'register',
-        component: SignupComponent,
       },
       {
         path: 'forgot-password',
