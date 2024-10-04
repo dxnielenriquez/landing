@@ -3,7 +3,6 @@ import {RouterModule, Routes} from "@angular/router";
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {LoginComponent} from "../share/components/login/login.component";
 import {SidebarComponent} from "../share/components/sidebar/sidebar.component";
-import {authGuard} from "../share/guards/auth.guard";
 import {ServicesComponent} from "./services/services.component";
 import {PortafolioComponent} from "./portafolio/portafolio.component";
 import {AboutComponent} from "./about/about.component";
@@ -58,15 +57,7 @@ const routes: Routes = [
 
     ]
   },
-  {
-    path: 'management',
-    component: SidebarComponent,
-    canActivate: [authGuard],
-    children: [
-
-    ]
-  },
-  {path: '**', redirectTo: 'auth/login', pathMatch: 'full'}
+  {path: '**', redirectTo: 'home/inicio', pathMatch: 'full'}
 ];
 
 @NgModule({
