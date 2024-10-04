@@ -6,6 +6,8 @@ import {SidebarComponent} from "../share/components/sidebar/sidebar.component";
 import {authGuard} from "../share/guards/auth.guard";
 import {ServicesComponent} from "./services/services.component";
 import {PortafolioComponent} from "./portafolio/portafolio.component";
+import {AboutComponent} from "./about/about.component";
+import {TeamComponent} from "./team/team.component";
 
 const routes: Routes = [
   {
@@ -34,6 +36,14 @@ const routes: Routes = [
       {
         path: 'portafolio',
         component: PortafolioComponent,
+      },
+      {
+        path: 'about',
+        component: AboutComponent,
+      },
+      {
+        path: 'team',
+        component: TeamComponent,
       }
 
     ]

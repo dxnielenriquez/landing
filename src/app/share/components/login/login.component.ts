@@ -8,11 +8,13 @@ import {NavbarComponent} from "../navbar/navbar.component";
 import {ServicesComponent} from "../../../pages/services/services.component";
 import {FooterComponent} from "../footer/footer.component";
 import {PortafolioComponent} from "../../../pages/portafolio/portafolio.component";
+import {AboutComponent} from "../../../pages/about/about.component";
+import {TeamComponent} from "../../../pages/team/team.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [PrimeModule, ShareModule, ToastModule, NavbarComponent, ServicesComponent, FooterComponent, PortafolioComponent],
+  imports: [PrimeModule, ShareModule, ToastModule, NavbarComponent, ServicesComponent, FooterComponent, PortafolioComponent, AboutComponent, TeamComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
