@@ -10,11 +10,12 @@ import {FooterComponent} from "../footer/footer.component";
 import {PortafolioComponent} from "../../../pages/portafolio/portafolio.component";
 import {AboutComponent} from "../../../pages/about/about.component";
 import {TeamComponent} from "../../../pages/team/team.component";
+import {ContactComponent} from "../../../pages/contact/contact.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [PrimeModule, ShareModule, ToastModule, NavbarComponent, ServicesComponent, FooterComponent, PortafolioComponent, AboutComponent, TeamComponent],
+  imports: [PrimeModule, ShareModule, ToastModule, NavbarComponent, ServicesComponent, FooterComponent, PortafolioComponent, AboutComponent, TeamComponent, ContactComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
