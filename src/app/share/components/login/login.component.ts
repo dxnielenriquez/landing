@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
 import {ShareModule} from "../../share.module";
 import {ToastModule} from "primeng/toast";
 import {PrimeModule} from "../../prime/prime.module";
@@ -22,18 +20,10 @@ import {ContactComponent} from "../../../pages/contact/contact.component";
 export class LoginComponent implements OnInit {
 
   loading: boolean = false;
-  loginForm: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-  ) {
-
-    this.loginForm = this.fb.group({
-      email: ['depasie2019@gmail.com', [Validators.required, Validators.email]],
-      password: ['secret', [Validators.required]],
-    });
+  constructor() {
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }
