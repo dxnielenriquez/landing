@@ -19,8 +19,6 @@ import {ContactComponent} from "../../../pages/contact/contact.component";
 })
 export class LoginComponent implements OnInit {
 
-  loading: boolean = false;
-
   constructor() {
   }
 
