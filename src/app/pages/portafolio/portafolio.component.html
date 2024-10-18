@@ -1,97 +1,45 @@
 <section class="page-section bg-light" id="portfolio">
   <div class="container">
     <div class="text-center">
-      <h2 class="section-heading text-uppercase texts">Portfolio</h2>
-      <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+      <h2 class="section-heading text-uppercase texts text-start">Soluciones</h2>
+      <hr style="color: black">
+      <h3 class="section-subheading text-muted"></h3>
     </div>
-    <div class="row">
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <!-- Portfolio item 1-->
-        <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-            </div>
-            <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..."/>
-          </a>
-          <div class="portfolio-caption">
-            <div class="portfolio-caption-heading texts">Threads</div>
-            <div class="portfolio-caption-subheading text-muted">Illustration</div>
+
+    <!-- Folder Container -->
+    <div class="card folder-card">
+      <!-- Folder Tabs (Right aligned) -->
+      <ul class="nav nav-tabs justify-content-end folder-tabs" id="folderTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="folder1-tab" data-bs-toggle="tab" href="#folder1" role="tab" aria-controls="folder1" aria-selected="true">Folder 1</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="folder2-tab" data-bs-toggle="tab" href="#folder2" role="tab" aria-controls="folder2" aria-selected="false">Folder 2</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="folder3-tab" data-bs-toggle="tab" href="#folder3" role="tab" aria-controls="folder3" aria-selected="false">Folder 3</a>
+        </li>
+      </ul>
+
+      <!-- Card Body Content -->
+      <div class="card-body">
+        <div class="tab-content" id="folderContent">
+          <!-- Folder 1 Content -->
+          <div class="tab-pane fade show active" id="folder1" role="tabpanel" aria-labelledby="folder1-tab">
+            <h4>Título de la Carpeta 1</h4>
+            <p>Contenido de la carpeta 1. Aquí se puede añadir texto o cualquier otro contenido que desees.</p>
           </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <!-- Portfolio item 2-->
-        <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-            </div>
-            <img class="img-fluid" src="assets/img/portfolio/2.jpg" alt="..."/>
-          </a>
-          <div class="portfolio-caption">
-            <div class="portfolio-caption-heading texts">Explore</div>
-            <div class="portfolio-caption-subheading text-muted">Graphic Design</div>
+
+          <!-- Folder 2 Content -->
+          <div class="tab-pane fade" id="folder2" role="tabpanel" aria-labelledby="folder2-tab">
+            <h4>Título de la Carpeta 2</h4>
+            <p>Contenido de la carpeta 2. Puedes agregar diferente información aquí.</p>
           </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-4">
-        <!-- Portfolio item 3-->
-        <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-            </div>
-            <img class="img-fluid" src="assets/img/portfolio/3.jpg" alt="..."/>
-          </a>
-          <div class="portfolio-caption">
-            <div class="portfolio-caption-heading texts">Finish</div>
-            <div class="portfolio-caption-subheading text-muted">Identity</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-        <!-- Portfolio item 4-->
-        <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal4">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-            </div>
-            <img class="img-fluid" src="assets/img/portfolio/4.jpg" alt="..."/>
-          </a>
-          <div class="portfolio-caption">
-            <div class="portfolio-caption-heading texts">Lines</div>
-            <div class="portfolio-caption-subheading text-muted">Branding</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 mb-4 mb-sm-0">
-        <!-- Portfolio item 5-->
-        <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal5">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-            </div>
-            <img class="img-fluid" src="assets/img/portfolio/5.jpg" alt="..."/>
-          </a>
-          <div class="portfolio-caption">
-            <div class="portfolio-caption-heading texts">Southwest</div>
-            <div class="portfolio-caption-subheading text-muted">Website Design</div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6">
-        <!-- Portfolio item 6-->
-        <div class="portfolio-item">
-          <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-            </div>
-            <img class="img-fluid" src="assets/img/portfolio/6.jpg" alt="..."/>
-          </a>
-          <div class="portfolio-caption">
-            <div class="portfolio-caption-heading texts">Window</div>
-            <div class="portfolio-caption-subheading text-muted">Photography</div>
+
+          <!-- Folder 3 Content -->
+          <div class="tab-pane fade" id="folder3" role="tabpanel" aria-labelledby="folder3-tab">
+            <h4>Título de la Carpeta 3</h4>
+            <p>Contenido de la carpeta 3. Cada carpeta puede tener su propio contenido único.</p>
           </div>
         </div>
       </div>
