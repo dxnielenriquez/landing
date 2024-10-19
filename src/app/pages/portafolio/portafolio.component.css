@@ -58,56 +58,65 @@
 .portfolio-link:hover .portfolio-hover-content {
   transform: scale(1.1);
 }
-
-/* Estilo para las pestañas */
 .nav-tabs {
-  position: relative; /* Para el apilamiento */
-  padding: 0; /* Elimina el padding por defecto */
+  position: relative;
+  padding: 0;
 }
 
 .nav-tabs .nav-item {
-  position: relative; /* Permite el apilamiento */
-  margin-right: -15px; /* Aumentar el margen negativo para superponer más */
+  position: relative;
+  margin-right: -15px;
 }
 
 .nav-tabs .nav-link {
-  border: 2px solid transparent; /* Borde transparente */
-  border-radius: 8px; /* Esquinas redondeadas */
-  margin: 10px 0; /* Espaciado entre pestañas */
-  transition: background-color 0.3s, color 0.3s, transform 0.3s; /* Transiciones suaves */
-  position: relative; /* Para el z-index */
-  z-index: 1; /* Asegura que las pestañas estén por encima */
-  opacity: 0.5; /* Reducir aún más la opacidad de las pestañas inactivas */
+  border: 2px solid transparent;
+  border-radius: 8px;
+  margin: 10px 0;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: #495057;
+}
+
+.nav-tabs .nav-link:before {
+  content: attr(data-title);
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 14px;
+  color: transparent;
 }
 
 .nav-tabs .nav-link.active {
-  background-color: #343a40; /* Color de fondo activo */
-  color: white; /* Color del texto activo */
-  transform: translateY(-10px); /* Efecto de levantamiento más pronunciado */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Sombra para destacar el tab activo */
-  opacity: 1; /* Aumentar la opacidad del tab activo */
+  background-color: #343a40;
+  color: white;
+  transform: translateY(-15px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.nav-tabs .nav-link.active:before {
+  opacity: 1;
+  color: white;
 }
 
 .nav-tabs .nav-link:hover {
-  background-color: #495057; /* Color de fondo al pasar el mouse */
-  color: white; /* Color del texto al pasar el mouse */
-  transform: translateY(-5px); /* Levantar ligeramente al pasar el mouse */
-  border-color: #343a40; /* Añadir borde visible al pasar el mouse */
-  opacity: 1; /* Aumentar la opacidad al pasar el mouse */
+  background-color: #6c757d;
+  color: white;
+  transform: translateY(-10px);
+  border-color: #343a40;
 }
 
-/* Efecto de apilamiento */
 .nav-tabs .nav-link:not(.active) {
-  z-index: 0; /* Z-index más bajo para las pestañas inactivas */
-  transform: translateY(10px); /* Mover hacia abajo para simular apilamiento */
+  z-index: 0;
+  transform: translateY(5px);
+  opacity: 0.7;
 }
 
-/* Estilo para el contenido del tab */
 .tab-content {
-  padding: 20px; /* Espaciado interno del contenido del tab */
-  border: 1px solid #343a40; /* Borde alrededor del contenido */
-  border-radius: 8px; /* Esquinas redondeadas */
-  background-color: white; /* Fondo blanco para el contenido */
-  transition: opacity 0.3s ease; /* Transición suave para la visibilidad */
+  padding: 20px;
+  border: 1px solid #343a40;
+  border-radius: 8px;
+  background-color: white;
+  transition: opacity 0.3s ease;
 }
-
