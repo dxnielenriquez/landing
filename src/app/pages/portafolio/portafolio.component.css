@@ -17,18 +17,23 @@
 .portfolio-item:nth-child(1) {
   animation-delay: 0.2s;
 }
+
 .portfolio-item:nth-child(2) {
   animation-delay: 0.4s;
 }
+
 .portfolio-item:nth-child(3) {
   animation-delay: 0.6s;
 }
+
 .portfolio-item:nth-child(4) {
   animation-delay: 0.8s;
 }
+
 .portfolio-item:nth-child(5) {
   animation-delay: 1s;
 }
+
 .portfolio-item:nth-child(6) {
   animation-delay: 1.2s;
 }
@@ -58,6 +63,7 @@
 .portfolio-link:hover .portfolio-hover-content {
   transform: scale(1.1);
 }
+
 .nav-tabs {
   position: relative;
   padding: 0;
@@ -91,7 +97,6 @@
 .nav-tabs .nav-link.active {
   background-color: #343a40;
   color: white;
-  transform: translateY(-15px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
@@ -103,8 +108,85 @@
 .nav-tabs .nav-link:hover {
   background-color: #6c757d;
   color: white;
-  transform: translateY(-10px);
   border-color: #343a40;
+}
+
+.nav-tabs .nav-link:not(.active) {
+  z-index: 0;
+  opacity: 0.8;
+}
+
+.tab-content {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: white;
+  transition: opacity 0.3s ease;
+  margin-right: -54px;
+}
+
+.custom-card {
+  background-color: #e1ccf7;
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+.custom-card .card-header {
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+}
+
+.custom-card .badge {
+  font-size: 1rem;
+  background-color: #7e57c2;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0 1rem 0 0;
+}
+
+.custom-card .card-body {
+  color: #3a3a3a;
+  font-size: 1rem;
+}
+
+/**/
+
+.folder-card {
+  border-radius: 0.5rem;
+  padding: 20px;
+  position: relative;
+}
+
+.nav-tabs {
+  justify-content: flex-end;
+}
+
+.nav-tabs .nav-item {
+  margin-right: -52px;
+}
+
+
+.nav-tabs .nav-link {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  margin: -2px;
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.7);
+  background-color: black;
+  padding: 10px 20px;
+  text-align: center;
+  min-width: 150px;
+}
+
+.nav-tabs .nav-link:hover {
+  color: white;
+  border-color: #343a40;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #343a40;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 3;
 }
 
 .nav-tabs .nav-link:not(.active) {
@@ -115,8 +197,61 @@
 
 .tab-content {
   padding: 20px;
-  border: 1px solid #343a40;
   border-radius: 8px;
-  background-color: white;
+  background: linear-gradient(180deg, #722B8E 0%, #200C28 99.99%);
+  color: white;
   transition: opacity 0.3s ease;
 }
+
+
+/*!*!*!*!*!**!*!*!*!*!*/
+/*#343a40*/
+.folder-tabs .nav-link {
+  background-color: #722B8E;
+  color: white;
+  padding: 10px;
+  width: 180px;
+  text-align: center;
+  clip-path: polygon(0 100%, 10% 0%, 90% 0%, 100% 100%);
+  transition: background-color 0.3s ease;
+}
+
+.folder-tabs .nav-link.active {
+  background: linear-gradient(180deg, #722B8E 0%, #200C28 99.99%);
+}
+
+.folder-tabs .nav-link:hover {
+  background-color: #7b2aba;
+}
+
+/**/
+/**/
+/**/
+@media (max-width: 768px) {
+  .tab-content {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: white;
+    transition: opacity 0.3s ease;
+    margin-right: -25px;
+  }
+
+  .folder-tabs .nav-link {
+    padding: 5px 10px;
+    font-size: 9px;
+    width: 180px;
+    text-align: center;
+    margin: 0 5px;
+    flex: 1;
+
+  }
+
+  .folder-tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+
