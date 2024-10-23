@@ -1,43 +1,160 @@
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.page-section .col-md-4 {
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1000;
   opacity: 0;
-  animation: fadeInUp 1s ease-out forwards;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
 }
 
-.page-section .col-md-4:nth-child(1) {
-  animation-delay: 0.2s;
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.page-section .col-md-4:nth-child(2) {
-  animation-delay: 0.4s;
+.expanded-card {
+  background: white;
+  margin-right: 11%;
+  padding: 20px;
+  text-align: center;
+  max-width: 50vw;
+  max-height: 60vh;
+  overflow-y: auto;
+  z-index: 1001;
+  border-radius: 20px;
+  border: 3px solid #D6B4FC;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-.page-section .col-md-4:nth-child(3) {
-  animation-delay: 0.6s;
+.overlay.show .expanded-card {
+  transform: translateY(0);
+  opacity: 1;
 }
 
-.fa-stack {
-  transition: transform 0.3s ease-in-out;
+.timeline {
+  position: relative;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-.fa-stack:hover {
-  transform: scale(1.1);
+.timeline.shift {
+  transform: translateX(-25%);
+  opacity: 0.5;
 }
 
-.texts {
-  transition: color 0.3s ease-in-out;
+.item1 {
+  grid-area: img
 }
 
-.texts:hover {
-  color: #007bff;
+.item2 {
+  grid-area: btn;
+  min-width: 261px;
 }
+
+.item3 {
+  grid-area: info
+}
+
+.container-prep {
+  display: grid;
+  grid-template-areas:
+    'img info'
+    'btn info';
+  gap: 10px;
+  padding: 10px;
+}
+
+.btns {
+  display: flex;
+  flex-direction: row;
+}
+
+.borders {
+  border-radius: 5px;
+  border: 1px solid #D6B4FC;
+  font-size: 11px;
+  max-height: 30px;
+
+}
+
+.imagenes {
+  height: auto;
+  width: 150px;
+}
+
+/*medias modo moviles*/
+
+@media (max-width: 992px) {
+  .timeline.shift {
+    transform: translateX(0%);
+    opacity: 0.5;
+  }
+
+  .expanded-card {
+    background: white;
+    margin-right: 13%;
+    padding: 20px;
+    text-align: center;
+    max-width: 80vw;
+    max-height: 60vh;
+    overflow-y: auto;
+    z-index: 1001;
+    border-radius: 20px;
+    border: 3px solid #D6B4FC;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /*transform: translateY(20px);*/
+    /*opacity: 0;*/
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+
+
+
+}
+
+@media (max-width: 768px) {
+
+  .container-prep {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .timeline {
+    position: relative;
+    padding: 0;
+    list-style: none;
+    margin-left: 40%;
+  }
+
+  .timeline > li .timeline-image {
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    width: 80px;
+    height: 60px;
+    margin-left: 0;
+    text-align: center;
+    color: white;
+    border: 7px solid #e9ecef;
+    border-radius: 10%;
+    background-color: #ffffff;
+  }
+}
+
+
+
+

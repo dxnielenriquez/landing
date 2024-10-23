@@ -1,49 +1,44 @@
-<section class="page-section bg-light" id="team">
+<section class="page-section" id="about">
   <div class="container">
     <div class="text-center">
       <h2 class="section-heading text-uppercase texts text-start">Casos de éxito</h2>
       <hr style="color: black">
       <h3 class="section-subheading text-muted"></h3>
     </div>
-    <div class="row">
-      <div class="col-md-4 team-member">
-        <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..."/>
-        <h4 class="texts">Parveen Anand</h4>
-        <p class="text-muted">Lead Designer</p>
-        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i
-          class="fab fa-twitter"></i></a>
-        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Facebook Profile"><i
-          class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand LinkedIn Profile"><i
-          class="fab fa-linkedin-in"></i></a>
+    <ul class="timeline w-80" [class.shift]="isModalOpen">
+      <li *ngFor="let fecha of fechas">
+        <div class="timeline-image text-black" (click)="setData(fecha.preps)">{{ fecha.fecha }}</div>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="dataFecha.length != 0" class="overlay text-black pl-6" (click)="closeCard()">
+    <div class="expanded-card" (click)="$event.stopPropagation()">
+      <div class="container-prep" *ngFor="let data of dataFecha">
+
+        <img class="item1 imagenes" [src]="data.logo">
+
+        <div class="btns item2 align-content-center">
+          <a *ngIf="data.reconocimiento"
+             class="p-1 m-1 borders cursor-pointer"
+             [href]="data.reconocimiento"
+             target="_blank"
+             rel="noopener noreferrer">
+            RECONOCIMIENTO
+          </a>
+          <a *ngIf="data.sitio_web"
+             class="p-1 m-1 borders cursor-pointer"
+             [href]="data.sitio_web"
+             target="_blank"
+             rel="noopener noreferrer">
+            SITIO DE PUBLICACIÓN
+          </a>
+        </div>
+
+        <span class="item3"> <b>{{ data.titulo }}</b></span>
+        <span class="item3 align-self-center"><br>{{ data.texto }}</span>
       </div>
-      <div class="col-md-4 team-member">
-        <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..."/>
-        <h4 class="texts">Diana Petersen</h4>
-        <p class="text-muted">Lead Marketer</p>
-        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i
-          class="fab fa-twitter"></i></a>
-        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile"><i
-          class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i
-          class="fab fa-linkedin-in"></i></a>
-      </div>
-      <div class="col-md-4 team-member">
-        <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..."/>
-        <h4 class="texts">Larry Parker</h4>
-        <p class="text-muted">Lead Developer</p>
-        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i
-          class="fab fa-twitter"></i></a>
-        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i
-          class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i
-          class="fab fa-linkedin-in"></i></a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-8 mx-auto text-center"><p class="large text-muted">Lorem ipsum dolor sit amet, consectetur
-        adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut
-        unde.</p></div>
     </div>
   </div>
+
 </section>
