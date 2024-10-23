@@ -12471,7 +12471,7 @@ p {
 }
 
 .page-section h2.section-heading, .page-section .section-heading.h2 {
-  font-size: 2.5rem;
+  /*font-size: 2.5rem;*/
   margin-top: 0;
   margin-bottom: 1rem;
 }
@@ -12796,8 +12796,8 @@ header.masthead .masthead-heading {
   margin-left: 0;
   text-align: center;
   color: white;
-  border: 7px solid #e9ecef;
   border-radius: 100%;
+  border: 3px solid #D6B4FC;
   background-color: #ffffff;
 }
 
@@ -12866,10 +12866,6 @@ header.masthead .masthead-heading {
   }
 
   .timeline > li .timeline-image {
-    /*left: 50%;*/
-    /*width: 100px;*/
-    /*height: 100px;*/
-    /*margin-left: -50px;*/
     left: 50%;
     width: 110px;
     height: 70px;
@@ -12900,9 +12896,6 @@ header.masthead .masthead-heading {
   }
 
   .timeline > li .timeline-image {
-    /*width: 150px;*/
-    /*height: 150px;*/
-    /*margin-left: -75px;*/
     margin-left: -95px;
     width: 190px;
     height: 70px;
@@ -13041,4 +13034,7 @@ section#contact form#contactForm :-ms-input-placeholder {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-
+.text-morado {
+  color: #662480;
+  vertical-align: middle;
+}

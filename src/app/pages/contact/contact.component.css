@@ -1,2 +1,127 @@
-<link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/contacts/contact-1/assets/css/contact-1.css">
+.encabezado {
+  font-size: x-large;
+
+}
+
+a {
+  transition: .3s all ease;
+
+  &, &:hover {
+    text-decoration: none !important;
+  }
+}
+
+.text-black {
+  color: #000;
+}
+
+.content {
+  padding: 7rem 0;
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+
+.form-control {
+  border: none;
+
+  &:active, &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.col-form-label {
+  color: #000;
+}
+
+.btn, .form-control, .custom-select {
+  height: 50px;
+}
+
+.custom-select {
+  &:active, &:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #000;
+  }
+}
+
+.btn {
+  border: none;
+  border-radius: 4px !important;
+
+  &.btn-primary {
+    background: black;
+    color: white;
+    padding: 15px 20px;
+  }
+
+  &:hover {
+    color: white;
+  }
+
+  &:active, &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.box {
+  padding: 40px;
+  background: white;
+  box-shadow: -30px 30px 0px 0 rgba(black, .08);
+
+  h3 {
+    font-size: 14px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+}
+
+
+label.error {
+  font-size: 12px;
+  color: red;
+}
+
+#message {
+  resize: vertical;
+}
+
+#form-message-warning, #form-message-success {
+  display: none;
+}
+
+#form-message-warning {
+  color: #B90B0B;
+}
+
+#form-message-success {
+  color: #55A44E;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.submitting {
+  float: left;
+  width: 100%;
+  padding: 10px 0;
+  display: none;
+  font-weight: bold;
+  font-size: 12px;
+  color: #000;
+}
+
+
+.forms{
+  border: 3px solid #D6B4FC;
+}
+
+.enviar {
+  width: 100%;
+  max-width: 150px;
+  background-color: #662481
+}
