@@ -42,3 +42,47 @@
   color: #007bff;
 }
 
+.rectangle {
+  border-radius: 10px;
+  height: 50px;
+  background-color: #662480;
+  width: 80%;
+  text-align: center;
+  align-content: center;
+
+}
+
+::ng-deep .region {
+  /*cursor: pointer;*/
+  fill: #FFFFFF;
+  stroke: #000000;
+}
+
+.map-container {
+  margin: auto !important;
+  width: 100%;
+}
+
+.map-big {
+  height: 70%;
+}
+
+:host {
+  height: 100%;
+}
+
+.map-container svg {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  padding-left: 30%;
+}
+
+@media (max-width: 768px) {
+  .map-container svg {
+    padding-left: 0;
+    height: 30vh;
+  }
+}
+
+
