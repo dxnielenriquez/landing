@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@a
 import {NgOptimizedImage} from "@angular/common";
 import * as d3 from 'd3';
 import {geoPath} from "d3";
-
+import {Modal} from "bootstrap";
 interface VotacionRegion {
   listaVotacion: VotacionData[];
   resumenVotacion?: TotalesVotos;
@@ -62,59 +62,90 @@ export class ServicesComponent implements OnInit, AfterViewInit {
   lastWidth = 0;
   @Input() territoriosSelected: Territorio[] | Territorio | undefined;
   filterSvgWin: any;
+  selectedRegion: any = null;
+  estados = [
+    { id: 30, nombre: 'Veracruz', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2024'], color: '#843fa5' },
+    { id: 29, nombre: 'Tlaxcala', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2024'], color: '#843fa5' },
+    { id: 26, nombre: 'Sonora', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2015', '2018', '2021', '2024'], color: '#843fa5' },
+    { id: 25, nombre: 'Sinaloa', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2001', '2004', '2007', '2010', '2011', '2013', '2018', '2021', '2024'], color: '#843fa5' },
+    { id: 18, nombre: 'Nayarit', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2021', '2024'], color: '#843fa5' },
+    { id: 28, nombre: 'Campeche', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2024'], color: '#843fa5' },
+    { id: 10, nombre: 'Durango', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2021', '2022', '2024'], color: '#843fa5' },
+    { id: 12, nombre: 'Guerrero', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2018', '2024'], color: '#843fa5' },
+    { id: 17, nombre: 'Morelos', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2018', '2021'], color: '#843fa5' },
+    { id: 16, nombre: 'Michoacan', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2021'], color: '#843fa5' }
+  ];
 
-  ngOnInit(): void {
-
-  }
-
+  ngOnInit(): void {}
 
   public drawMap(): void {
     const width = 1000;
-    // const width = 610;
     const height = 475;
 
     d3.json('./assets/mapa/mexico-e.json')
       .then((data: any) => {
-        console.log(data);
-
-        const projection = d3.geoIdentity()
-          .reflectY(true)
-          .scale(50)
-          .fitExtent([[0, 10], [width, height]], data);
-
+        const projection = d3.geoIdentity().reflectY(true).scale(50).fitExtent([[0, 10], [width, height]], data);
         const pathBuilder = geoPath().projection(projection);
 
-        const dataTerritorios = this.svgMap.attr('preserveAspectRatio', 'xMinYMin')
-          .selectAll('path')
+        this.svgMap.selectAll('path')
           .data(data.features)
           .enter()
           .append('path')
-          .classed('region', true)
-          .attr('id', (data: any) => {
-            return `region-${data.properties.ID}`;
-          })
-          .attr('d', pathBuilder);
+          .attr('id', (d: any) => `region-${d.properties.NUM_EDO}`)
+          .attr('d', pathBuilder)
+          .style('fill', '#D6B4FC')
+          .on('click', (event: any, d: any) => this.toggleRegion(d));
 
-        if (!this.disabled){
-          dataTerritorios
-          // .on('mouseover', this.handleMouseOver.bind(this))
-          // .on('mouseout', this.handleMouseOut.bind(this))
-          // .on('click', this.clickregion.bind(this));
-
-          this.createCardClickListener();
-          //this.createCardHoverListener();
-        }
-
-        // Resize Projection
-        this.mapSizeChange();
-        this.paintMapByData();
-
-        if (this.territoriosSelected){
-          this.highlightMultipleSelected(this.territoriosSelected);
-        }
-
-      }).catch(err => {});
+        this.estados.forEach(estado => {
+          const path = this.svgMap.select(`#region-${estado.id}`);
+          if (!path.empty()) {
+            path.style('fill', estado.color);          }
+        });
+      })
+      .catch(err => console.error("Error loading GeoJSON data:", err));
   }
+
+  toggleRegion(regionData: any): void {
+    const regionId = Number(regionData.properties.NUM_EDO);
+
+    const selected = this.estados.find(estado => estado.id === regionId);
+
+    if (selected) {
+      this.selectedRegion = selected;
+      this.showModal();
+    } else {
+      console.warn(`No se encontró un estado con ID: ${regionId}`);
+    }
+  }
+
+  showModal(): void {
+    const modalElement = document.getElementById('regionModal');
+    if (modalElement) {
+      const modal = new Modal(modalElement);
+      modal.show();
+    } else {
+      console.error("No se encontró el elemento modal");
+    }
+  }
+
+  public highlightRegion(regionId: string): void {
+    const path = this.getPathById(regionId);
+    if (path && !path.empty()) {
+      path.style('fill', 'blue');
+    }
+  }
+
+  public resetRegion(regionId: string): void {
+    const path = this.getPathById(regionId);
+    if (path && !path.empty()) {
+      path.style('fill', 'rgb(204, 204, 204)');
+    }
+  }
+
+  getPathById(idTerritorio: any){
+    return this.svgMap.select(`#region-${idTerritorio}`);
+  }
+
 
   ngAfterViewInit(): void {
     // console.log(this.svgMap)
@@ -171,7 +202,6 @@ export class ServicesComponent implements OnInit, AfterViewInit {
 
     const isMobile = window.innerWidth < 768;
 
-    // Ajustar la escala según el tamaño de la pantalla (más grande en móviles)
     const scaleValue = isMobile ? widthContainer / 1000 : widthContainer / 2200;
 
     this.svgMap.attr('transform', `scale(${scaleValue})`);
@@ -180,28 +210,27 @@ export class ServicesComponent implements OnInit, AfterViewInit {
 
 
   private paintMapByData(): void {
+    if (!this.mapData || !this.mapData.listaVotacion) {
+      console.error("mapData or listaVotacion is undefined");
+      return;
+    }
 
-    this.mapData!.listaVotacion.forEach(votacion => {
-
-      votacion.regiones!.forEach(region => {
-
+    this.mapData.listaVotacion.forEach(votacion => {
+      votacion.regiones?.forEach(region => {
         const regionNode = this.svgMap.select(`#region-${region.ID}`);
-        regionNode.style('fill', votacion.color);
-        regionNode.classed('region-con-ganador', true);
+        if (!regionNode.empty()) {
+          regionNode.style('fill', votacion.color);
+          regionNode.classed('region-con-ganador', true);
 
-        if (regionNode.empty()){
-          return;
+          Object.assign(regionNode.datum(), {
+            dataRegion: {
+              ID: region.ID,
+              Votos: votacion.votos,
+              Partidos: votacion.partidos,
+              Color: votacion.color
+            }
+          });
         }
-
-        Object.assign(regionNode.datum(), {
-          dataRegion: {
-            ID: region.ID,
-            Votos: votacion.votos,
-            Partidos: votacion.partidos,
-            Color: votacion.color
-          }
-        });
-
       });
     });
   }
@@ -241,9 +270,6 @@ export class ServicesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  getPathById(idTerritorio: any){
-    return this.svgMap.select(`#region-${idTerritorio}`);
-  }
 
   private createFilter(): void{
     this.filterSvgWin = this.svgMap.append('defs')

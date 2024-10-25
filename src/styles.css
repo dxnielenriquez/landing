@@ -6014,7 +6014,6 @@ textarea.form-control-lg {
   z-index: var(--bs-backdrop-zindex);
   width: 100vw;
   height: 100vh;
-  background-color: var(--bs-backdrop-bg);
 }
 
 .modal-backdrop.fade {
@@ -6022,7 +6021,7 @@ textarea.form-control-lg {
 }
 
 .modal-backdrop.show {
-  opacity: var(--bs-backdrop-opacity);
+  opacity: 0.5;
 }
 
 .modal-header {
