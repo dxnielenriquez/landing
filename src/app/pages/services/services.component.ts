@@ -224,19 +224,18 @@ export class ServicesComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit(): void {
-    // console.log(this.svgMap)
     this.svgMap = d3.select(this.svgHtmlElement!.nativeElement)
-      .attr('width', '100%')
+      .attr('width', '800%')
+      .attr('viewBox', `0 0 610 700`)
       .append('g');
 
     this.createFilter();
     this.drawMap();
+    this.mapSizeChange();
 
-    // this.createCardListener();
-
-    d3.select(window)
-      .on('resize', this.mapSizeChange.bind(this));
+    d3.select(window).on('resize', this.mapSizeChange.bind(this));
   }
+
 
   private createCardClickListener(): void {
 
@@ -269,20 +268,22 @@ export class ServicesComponent implements OnInit, AfterViewInit {
   private mapSizeChange(): void {
     const containerSvg = this.mapContainerHtmlElement!.nativeElement;
     const boxSvg = this.svgHtmlElement!.nativeElement;
-
     const widthContainer = containerSvg.offsetWidth;
 
-    if (this.lastWidth == widthContainer) {
-      return;
-    }
+    if (this.lastWidth === widthContainer) return;
 
+    this.lastWidth = widthContainer;
     const isMobile = window.innerWidth < 768;
 
-    const scaleValue = isMobile ? widthContainer / 1000 : widthContainer / 2200;
-
+    // Escala proporcional adaptativa
+    const scaleValue = isMobile ? widthContainer / 300 : widthContainer / 1150;
     this.svgMap.attr('transform', `scale(${scaleValue})`);
-    boxSvg.setAttribute('height', `${widthContainer * (isMobile ? 1.2 : 0.8)}`);
+
+    // Ajuste de altura para asegurar proporción en móviles
+    const height = isMobile ? widthContainer * 0.6 : widthContainer * 0.5;
+    boxSvg.setAttribute('height', `${height}`);
   }
+
 
 
   private paintMapByData(): void {

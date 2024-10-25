@@ -76,7 +76,6 @@
   width: 100%;
   height: 50vh;
   display: flex;
-  padding-left: 30%;
 }
 
 @media (max-width: 768px) {
