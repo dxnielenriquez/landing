@@ -89,5 +89,8 @@
   text-align: -webkit-center;
 }
 
-
+.imagenes {
+  height: auto;
+  width: 150px;
+}
 

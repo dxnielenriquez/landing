@@ -90,14 +90,16 @@
           <div class="rectangle text-white border cursor-pointer mb-4 "
                (mouseover)="highlightRegion('30')"
                (mouseout)="resetRegion('30')"
-          >VERACRUZ</div>
+          >VERACRUZ
+          </div>
         </div>
 
         <div class="col-md-2 ">
           <div class="rectangle text-white border cursor-pointer mb-4 "
                (mouseover)="highlightRegion('29')"
                (mouseout)="resetRegion('29')"
-          >TLAXCALA</div>
+          >TLAXCALA
+          </div>
         </div>
 
         <div class="col-md-2">
@@ -139,17 +141,18 @@
   <svg id="map" #painter></svg>
 </div>
 
-<!-- Modal for displaying region information -->
-<div class="modal text-black fade" id="regionModal" data-bs-backdrop="false" tabindex="-1" aria-labelledby="regionModalLabel" aria-hidden="true">
+<div class="modal text-black fade" id="regionModal" data-bs-backdrop="false" tabindex="-1"
+     aria-labelledby="regionModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="regionModalLabel">{{ selectedRegion?.nombre }}</h5>
       </div>
       <div class="modal-body">
-        <img [src]="selectedRegion?.logo" alt="Logo de {{ selectedRegion?.nombre }}" class="img-fluid mb-3">
+        <img [src]="selectedRegion?.logo" alt="Logo de {{ selectedRegion?.nombre }}" class="img-fluid mb-3 imagenes">
         <p><strong>Años de PREP:</strong> {{ selectedRegion?.anos.join(', ') }}</p>
       </div>
     </div>
   </div>
 </div>
+

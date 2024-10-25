@@ -1,12 +1,14 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
 import * as d3 from 'd3';
-import {geoPath} from "d3";
+import {geoPath} from 'd3';
 import {Modal} from "bootstrap";
+
 interface VotacionRegion {
   listaVotacion: VotacionData[];
   resumenVotacion?: TotalesVotos;
 }
+
 interface TotalesVotos {
   acumulados: TotalItem;
   nulos: TotalItem;
@@ -14,21 +16,22 @@ interface TotalesVotos {
   total: TotalItem;
 }
 
-interface TotalItem{
+interface TotalItem {
   value: any;
   percentage: number;
 }
+
 interface VotacionData {
   regiones?: Territorio[]
   votos?: number,
   porcentaje?: number,
-  ganador?:boolean,
-  color?:string,
-  partidos?:PartidoItem[]
+  ganador?: boolean,
+  color?: string,
+  partidos?: PartidoItem[]
 }
 
 interface PartidoItem {
-  idPartidos?:string,
+  idPartidos?: string,
   color?: string,
   logo?: string
 }
@@ -38,7 +41,6 @@ interface Territorio {
   nombre?: string;
   tipo?: string
 }
-
 
 @Component({
   selector: 'app-services',
@@ -58,25 +60,87 @@ export class ServicesComponent implements OnInit, AfterViewInit {
   @Input() disabled = false;
   showCard = false;
   showCardForce = false;
-  private regionSet = false;
   lastWidth = 0;
   @Input() territoriosSelected: Territorio[] | Territorio | undefined;
   filterSvgWin: any;
   selectedRegion: any = null;
+  private regionSet = false;
+  private modalInstance: Modal | undefined;
   estados = [
-    { id: 30, nombre: 'Veracruz', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2024'], color: '#843fa5' },
-    { id: 29, nombre: 'Tlaxcala', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2024'], color: '#843fa5' },
-    { id: 26, nombre: 'Sonora', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2015', '2018', '2021', '2024'], color: '#843fa5' },
-    { id: 25, nombre: 'Sinaloa', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2001', '2004', '2007', '2010', '2011', '2013', '2018', '2021', '2024'], color: '#843fa5' },
-    { id: 18, nombre: 'Nayarit', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2021', '2024'], color: '#843fa5' },
-    { id: 28, nombre: 'Campeche', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2024'], color: '#843fa5' },
-    { id: 10, nombre: 'Durango', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2021', '2022', '2024'], color: '#843fa5' },
-    { id: 12, nombre: 'Guerrero', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2018', '2024'], color: '#843fa5' },
-    { id: 17, nombre: 'Morelos', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2018', '2021'], color: '#843fa5' },
-    { id: 16, nombre: 'Michoacan', logo: 'assets/images/estadosLogos/aguascalientes.png', anos: ['2021'], color: '#843fa5' }
+    {
+      id: 30,
+      nombre: 'Veracruz',
+      logo: 'assets/images/estadosLogos/veracruz.svg',
+      anos: ['2024'],
+      color: '#843fa5'
+    },
+    {
+      id: 29,
+      nombre: 'Tlaxcala',
+      logo: 'assets/images/estadosLogos/tlaxcala.svg',
+      anos: ['2024'],
+      color: '#843fa5'
+    },
+    {
+      id: 26,
+      nombre: 'Sonora',
+      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      anos: ['2015', '2018', '2021', '2024'],
+      color: '#843fa5'
+    },
+    {
+      id: 25,
+      nombre: 'Sinaloa',
+      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      anos: ['2001', '2004', '2007', '2010', '2011', '2013', '2018', '2021', '2024'],
+      color: '#843fa5'
+    },
+    {
+      id: 18,
+      nombre: 'Nayarit',
+      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      anos: ['2021', '2024'],
+      color: '#843fa5'
+    },
+    {
+      id: 28,
+      nombre: 'Campeche',
+      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      anos: ['2024'],
+      color: '#843fa5'
+    },
+    {
+      id: 10,
+      nombre: 'Durango',
+      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      anos: ['2021', '2022', '2024'],
+      color: '#843fa5'
+    },
+    {
+      id: 12,
+      nombre: 'Guerrero',
+      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      anos: ['2018', '2024'],
+      color: '#843fa5'
+    },
+    {
+      id: 17,
+      nombre: 'Morelos',
+      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      anos: ['2018', '2021'],
+      color: '#843fa5'
+    },
+    {
+      id: 16,
+      nombre: 'Michoacan',
+      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      anos: ['2021'],
+      color: '#843fa5'
+    }
   ];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   public drawMap(): void {
     const width = 1000;
@@ -99,15 +163,25 @@ export class ServicesComponent implements OnInit, AfterViewInit {
         this.estados.forEach(estado => {
           const path = this.svgMap.select(`#region-${estado.id}`);
           if (!path.empty()) {
-            path.style('fill', estado.color);          }
+            path.style('fill', estado.color);
+          }
         });
       })
       .catch(err => console.error("Error loading GeoJSON data:", err));
   }
 
+  showModal(): void {
+    const modalElement = document.getElementById('regionModal');
+    if (modalElement) {
+      this.modalInstance = new Modal(modalElement);
+      this.modalInstance.show();
+    } else {
+      console.error("No se encontró el elemento modal");
+    }
+  }
+
   toggleRegion(regionData: any): void {
     const regionId = Number(regionData.properties.NUM_EDO);
-
     const selected = this.estados.find(estado => estado.id === regionId);
 
     if (selected) {
@@ -118,13 +192,13 @@ export class ServicesComponent implements OnInit, AfterViewInit {
     }
   }
 
-  showModal(): void {
-    const modalElement = document.getElementById('regionModal');
-    if (modalElement) {
-      const modal = new Modal(modalElement);
-      modal.show();
-    } else {
-      console.error("No se encontró el elemento modal");
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event): void {
+    const modalDialog = document.querySelector('.modal-dialog');
+    const isOutsideClick = modalDialog && !modalDialog.contains(event.target as Node);
+
+    if (isOutsideClick && this.modalInstance) {
+      this.modalInstance.hide();
     }
   }
 
@@ -142,7 +216,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getPathById(idTerritorio: any){
+  getPathById(idTerritorio: any) {
     return this.svgMap.select(`#region-${idTerritorio}`);
   }
 
@@ -162,7 +236,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
       .on('resize', this.mapSizeChange.bind(this));
   }
 
-  private createCardClickListener(): void{
+  private createCardClickListener(): void {
 
     d3.select('body').on('click', (event) => {
       const regiones = d3.selectAll('.region');
@@ -181,7 +255,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private disableHighlight(): void{
+  private disableHighlight(): void {
     this.svgMap.selectAll('.region')
       .classed('region-highlight', false);
 
@@ -235,7 +309,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private highlightSingleSelected(idPath: any): void{
+  private highlightSingleSelected(idPath: any): void {
 
     this.svgMap.selectAll('.region')
       .classed('region-highlight', true);
@@ -245,9 +319,10 @@ export class ServicesComponent implements OnInit, AfterViewInit {
     pathWinner.classed('region-selected-highlight', true)
       .attr('filter', 'url(#drop-shadow)');
   }
-  private highlightMultipleSelected(territorios: Territorio[] | Territorio): void{
 
-    if (!Array.isArray(territorios)){
+  private highlightMultipleSelected(territorios: Territorio[] | Territorio): void {
+
+    if (!Array.isArray(territorios)) {
       this.highlightSingleSelected(territorios.ID);
       return;
     }
@@ -256,7 +331,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
     regiones.classed('region-selected-highlight', false)
       .attr('filter', null);
 
-    if (territorios.length == 0){
+    if (territorios.length == 0) {
       regiones.classed('region-highlight', false);
       return;
     }
@@ -271,7 +346,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
   }
 
 
-  private createFilter(): void{
+  private createFilter(): void {
     this.filterSvgWin = this.svgMap.append('defs')
       .append('filter')
       .attr('id', 'drop-shadow')
