@@ -1,4 +1,4 @@
-<section class="page-section" id="services">
+<section class="page-section" id="services" xmlns="http://www.w3.org/1999/html">
   <div class="container">
     <div class="text-center">
       <h2 class="section-heading texts text-uppercase text-start">Nosotros</h2>
@@ -143,16 +143,18 @@
 
 <div class="modal text-black fade" id="regionModal" data-bs-backdrop="false" tabindex="-1"
      aria-labelledby="regionModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-dialog modal-md modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="regionModalLabel">{{ selectedRegion?.nombre }}</h5>
+        <h5 class="modal-title fw-bold" id="regionModalLabel">{{ selectedRegion?.nombre }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <img [src]="selectedRegion?.logo" alt="Logo de {{ selectedRegion?.nombre }}" class="img-fluid mb-3 imagenes">
-        <p><strong>Años de PREP:</strong> {{ selectedRegion?.anos.join(', ') }}</p>
+      <div class="modal-body text-center p-4">
+        <img [src]="selectedRegion?.logo" alt="Logo de {{ selectedRegion?.nombre }}" class="img-fluid mb-3 imagenes shadow" >
+        <p><strong>Años PREP:</strong> {{ selectedRegion?.anos.join(', ') }}</p>
       </div>
     </div>
   </div>
 </div>
+
 

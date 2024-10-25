@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
-import {NgOptimizedImage} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 import * as d3 from 'd3';
 import {geoPath} from 'd3';
 import {Modal} from "bootstrap";
@@ -46,6 +46,7 @@ interface Territorio {
   selector: 'app-services',
   standalone: true,
   imports: [
+    CommonModule,
     NgOptimizedImage
   ],
   templateUrl: './services.component.html',
@@ -84,56 +85,56 @@ export class ServicesComponent implements OnInit, AfterViewInit {
     {
       id: 26,
       nombre: 'Sonora',
-      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      logo: 'assets/images/estadosLogos/sonora.png',
       anos: ['2015', '2018', '2021', '2024'],
       color: '#843fa5'
     },
     {
       id: 25,
       nombre: 'Sinaloa',
-      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      logo: 'assets/images/estadosLogos/sinaloa.png',
       anos: ['2001', '2004', '2007', '2010', '2011', '2013', '2018', '2021', '2024'],
       color: '#843fa5'
     },
     {
       id: 18,
       nombre: 'Nayarit',
-      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      logo: 'assets/images/estadosLogos/nayarit.png',
       anos: ['2021', '2024'],
       color: '#843fa5'
     },
     {
       id: 28,
       nombre: 'Campeche',
-      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      logo: 'assets/images/estadosLogos/campeche.svg',
       anos: ['2024'],
       color: '#843fa5'
     },
     {
       id: 10,
       nombre: 'Durango',
-      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      logo: 'assets/images/estadosLogos/durango.png',
       anos: ['2021', '2022', '2024'],
       color: '#843fa5'
     },
     {
       id: 12,
       nombre: 'Guerrero',
-      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      logo: 'assets/images/estadosLogos/guerrero.png',
       anos: ['2018', '2024'],
       color: '#843fa5'
     },
     {
       id: 17,
       nombre: 'Morelos',
-      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      logo: 'assets/images/estadosLogos/morelos.png',
       anos: ['2018', '2021'],
       color: '#843fa5'
     },
     {
       id: 16,
       nombre: 'Michoacan',
-      logo: 'assets/images/estadosLogos/aguascalientes.png',
+      logo: 'assets/images/estadosLogos/michoacan.png',
       anos: ['2021'],
       color: '#843fa5'
     }
@@ -143,7 +144,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
   }
 
   public drawMap(): void {
-    const width = 1000;
+    const width = 610;
     const height = 475;
 
     d3.json('./assets/mapa/mexico-e.json')
@@ -158,6 +159,8 @@ export class ServicesComponent implements OnInit, AfterViewInit {
           .attr('id', (d: any) => `region-${d.properties.NUM_EDO}`)
           .attr('d', pathBuilder)
           .style('fill', '#D6B4FC')
+          .style('stroke', '#0a090a')
+          .style('stroke-width', '1.5px')
           .on('click', (event: any, d: any) => this.toggleRegion(d));
 
         this.estados.forEach(estado => {
@@ -186,9 +189,8 @@ export class ServicesComponent implements OnInit, AfterViewInit {
 
     if (selected) {
       this.selectedRegion = selected;
+      console.log(selected)
       this.showModal();
-    } else {
-      console.warn(`No se encontró un estado con ID: ${regionId}`);
     }
   }
 
@@ -224,7 +226,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     // console.log(this.svgMap)
     this.svgMap = d3.select(this.svgHtmlElement!.nativeElement)
-      .attr('width', '800%')
+      .attr('width', '100%')
       .append('g');
 
     this.createFilter();
