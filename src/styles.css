@@ -161,7 +161,7 @@ body {
 
 body {
   margin: 0;
-  font-family: var(--bs-body-font-family);
+  font-family: 'Roboto', sans-serif;
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
@@ -12853,7 +12853,7 @@ header.masthead .masthead-heading {
   }
 
   .timeline > li {
-    min-height: 100px;
+    min-height: 70px;
     margin-bottom: 100px;
   }
 
@@ -12869,7 +12869,7 @@ header.masthead .masthead-heading {
     width: 110px;
     height: 70px;
     border-radius: 10px;
-    margin-left: -50px;
+    margin-left: -55px;
     align-content: center;
 
   }
@@ -12889,7 +12889,7 @@ header.masthead .masthead-heading {
 
 @media (min-width: 992px) {
   .timeline > li {
-    min-height: 150px;
+    min-height: 80px;
   }
 
   .timeline > li .timeline-panel {
@@ -12919,7 +12919,7 @@ header.masthead .masthead-heading {
 
 @media (min-width: 1200px) {
   .timeline > li {
-    min-height: 170px;
+    min-height: 80px;
   }
 
   .timeline > li .timeline-panel {
