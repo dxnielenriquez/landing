@@ -271,7 +271,7 @@ export class TeamComponent {
       ]
     }
   ];
-  dataFecha: any[] = [];
+  dataFecha = this.fechas.find(fecha => fecha.fecha === '2024')?.preps || [];
 
 
   setData(preps: any) {

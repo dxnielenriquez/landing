@@ -5,40 +5,29 @@
       <hr style="color: black">
       <h3 class="section-subheading text-muted"></h3>
     </div>
-    <ul class="timeline w-80 " [class.shift]="isModalOpen">
-      <li *ngFor="let fecha of fechas">
-        <div class="timeline-image text-black cursor-pointer" (click)="setData(fecha.preps)">{{ fecha.fecha }}</div>
-      </li>
-    </ul>
-  </div>
 
-  <div *ngIf="dataFecha.length != 0" class="overlay text-black pl-6" (click)="closeCard()">
-    <div class="expanded-card" (click)="$event.stopPropagation()">
-      <div class="container-prep" *ngFor="let data of dataFecha">
+    <div class="years-container">
+      <div *ngFor="let fecha of fechas" class="year-item" (click)="setData(fecha.preps)">
+        {{ fecha.fecha }}
+      </div>
+    </div>
 
-        <img class="item1 imagenes" [src]="data.logo">
-
-        <div class="btns item2 align-content-center">
-          <a *ngIf="data.reconocimiento"
-             class="p-1 m-1 borders cursor-pointer"
-             [href]="data.reconocimiento"
-             target="_blank"
-             rel="noopener noreferrer">
-            RECONOCIMIENTO
-          </a>
-          <a *ngIf="data.sitio_web"
-             class="p-1 m-1 borders cursor-pointer"
-             [href]="data.sitio_web"
-             target="_blank"
-             rel="noopener noreferrer">
-            SITIO DE PUBLICACIÓN
-          </a>
+    <div class="cards-container" *ngIf="dataFecha.length != 0">
+      <div class="card" *ngFor="let data of dataFecha">
+        <img class="card-image" [src]="data.logo" alt="Logo">
+        <div class="card-content">
+          <h4 class="card-title">{{ data.titulo }}</h4>
+          <p class="card-text">{{ data.texto }}</p>
+          <div class="card-buttons">
+            <a *ngIf="data.reconocimiento" class="card-button" [href]="data.reconocimiento" target="_blank" rel="noopener noreferrer">
+              RECONOCIMIENTO
+            </a>
+            <a *ngIf="data.sitio_web" class="card-button" [href]="data.sitio_web" target="_blank" rel="noopener noreferrer">
+              SITIO DE PUBLICACIÓN
+            </a>
+          </div>
         </div>
-
-        <span class="item3"> <b>{{ data.titulo }}</b></span>
-        <span class="item3 align-self-center"><br>{{ data.texto }}</span>
       </div>
     </div>
   </div>
-
 </section>
