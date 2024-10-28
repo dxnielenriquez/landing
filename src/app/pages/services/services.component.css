@@ -93,7 +93,7 @@
   .map-container svg {
     width: 100%;
     padding-left: 0;
-    margin-left: 5%;
+    margin-left: -25%;
     /*height: 30vh;*/
   }
 }

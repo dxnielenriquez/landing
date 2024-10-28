@@ -234,7 +234,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
     const isMobile = window.innerWidth < 768;
 
     // aqui muevo el mapa a proporcion
-    const scaleValue = isMobile ? widthContainer / 400 : widthContainer / 1150;
+    const scaleValue = isMobile ? widthContainer / 550 : widthContainer / 1150;
     this.svgMap.attr('transform', `scale(${scaleValue})`);
 
     // ajuste para los moviles
