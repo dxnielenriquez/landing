@@ -59,14 +59,10 @@ export class ServicesComponent implements OnInit, AfterViewInit {
   @Input() srcGeoJson: any;
   svgMap: any;
   @Input() disabled = false;
-  showCard = false;
-  showCardForce = false;
   lastWidth = 0;
   @Input() territoriosSelected: Territorio[] | Territorio | undefined;
   filterSvgWin: any;
   selectedRegion: any = null;
-  private regionSet = false;
-  private modalInstance: Modal | undefined;
   estados = [
     {
       id: 30,
@@ -139,6 +135,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
       color: '#843fa5'
     }
   ];
+  private modalInstance: Modal | undefined;
 
   ngOnInit(): void {
   }
@@ -166,7 +163,8 @@ export class ServicesComponent implements OnInit, AfterViewInit {
         this.estados.forEach(estado => {
           const path = this.svgMap.select(`#region-${estado.id}`);
           if (!path.empty()) {
-            path.style('fill', estado.color);
+            path.style('fill', estado.color)
+              .style('cursor', 'pointer');
           }
         });
       })
@@ -205,8 +203,6 @@ export class ServicesComponent implements OnInit, AfterViewInit {
   }
 
 
-
-
   ngAfterViewInit(): void {
     this.svgMap = d3.select(this.svgHtmlElement!.nativeElement)
       .attr('width', '800%')
@@ -219,8 +215,6 @@ export class ServicesComponent implements OnInit, AfterViewInit {
 
     d3.select(window).on('resize', this.mapSizeChange.bind(this));
   }
-
-
 
 
   private mapSizeChange(): void {
@@ -241,7 +235,6 @@ export class ServicesComponent implements OnInit, AfterViewInit {
     const height = isMobile ? widthContainer * 0.6 : widthContainer * 0.5;
     boxSvg.setAttribute('height', `${height}`);
   }
-
 
 
   private createFilter(): void {
