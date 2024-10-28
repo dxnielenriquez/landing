@@ -38,9 +38,7 @@
   transition: color 0.3s ease-in-out;
 }
 
-.texts:hover {
-  color: #007bff;
-}
+
 
 .rectangle {
   border-radius: 10px;

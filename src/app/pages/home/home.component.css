@@ -1,3 +1,88 @@
-. textosParrafos {
-  color: black;
+.voting-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+  overflow: hidden;
+  position: relative;
+}
+
+.urna-container {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-ine {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.slot {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 10px;
+  background-color: #222;
+  border-radius: 5px;
+  z-index: 2;
+}
+
+.ballot {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  width: 50px;
+  height: 70px;
+  background-color: #eaeaea;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateX(-50%) rotate(0deg);
+  animation: fall 3s infinite ease-in-out;
+  opacity: 0.9;
+  z-index: 3;
+}
+
+.ballot:before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 5px;
+  background-color: #ddd;
+}
+
+.delay1 {
+  animation-delay: 1s;
+}
+.delay2 {
+  animation-delay: 2s;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(150px) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+.conoce {
+  background-color: #662481;
 }

@@ -187,7 +187,6 @@ export class ServicesComponent implements OnInit, AfterViewInit {
 
     if (selected) {
       this.selectedRegion = selected;
-      console.log(selected)
       this.showModal();
     }
   }

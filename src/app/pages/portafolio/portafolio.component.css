@@ -216,12 +216,25 @@
   transition: background-color 0.3s ease;
 }
 
-.folder-tabs .nav-link.active {
-  background: linear-gradient(180deg, #722B8E 0%, #200C28 99.99%);
-}
-
 .folder-tabs .nav-link:hover {
   background-color: #7b2aba;
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.folder-tabs .nav-link.active {
+  background: linear-gradient(180deg, #722B8E 0%, #200C28 99.99%);
+  transform: translateY(0);
+  animation: bounce 0.5s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 /**/
