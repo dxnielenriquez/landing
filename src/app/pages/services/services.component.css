@@ -59,7 +59,6 @@
 }
 
 
-
 .map-big {
   height: 70%;
 }
@@ -72,18 +71,12 @@
   margin: auto !important;
   width: 100%;
 }
+
 .map-container svg {
   width: 100%;
   height: 60vh;
   display: flex;
   margin-top: -90px;
-}
-
-@media (max-width: 768px) {
-  .map-container svg {
-    padding-left: 0;
-    height: 30vh;
-  }
 }
 
 .estados {
@@ -93,5 +86,32 @@
 .imagenes {
   height: auto;
   width: 150px;
+}
+
+
+@media (max-width: 768px) {
+  .map-container svg {
+    width: 100%;
+    padding-left: 0;
+    margin-left: 5%;
+    /*height: 30vh;*/
+  }
+}
+
+@media (max-width: 550px) {
+  .map-container svg {
+    width: 100%;
+    padding-left: 0;
+    margin-left: 7%;
+  }
+}
+
+@media (max-width: 415px) {
+  .map-container svg {
+    width: 100%;
+    padding-left: 0;
+    margin-left: 7%;
+    margin-inline-end: auto;
+  }
 }
 

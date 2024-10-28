@@ -204,23 +204,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public highlightRegion(regionId: string): void {
-    const path = this.getPathById(regionId);
-    if (path && !path.empty()) {
-      path.style('fill', 'blue');
-    }
-  }
 
-  public resetRegion(regionId: string): void {
-    const path = this.getPathById(regionId);
-    if (path && !path.empty()) {
-      path.style('fill', 'rgb(204, 204, 204)');
-    }
-  }
-
-  getPathById(idTerritorio: any) {
-    return this.svgMap.select(`#region-${idTerritorio}`);
-  }
 
 
   ngAfterViewInit(): void {
@@ -237,33 +221,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
   }
 
 
-  private createCardClickListener(): void {
 
-    d3.select('body').on('click', (event) => {
-      const regiones = d3.selectAll('.region');
-      const nodes = d3.selectAll('.region').nodes();
-
-      const outside = regiones.filter((data, i) => {
-        return nodes[i] === (event.target);
-      }).empty();
-
-      if (outside) {
-        this.showCard = false;
-        this.showCardForce = false;
-        this.regionSet = false;
-        this.disableHighlight();
-      }
-    });
-  }
-
-  private disableHighlight(): void {
-    this.svgMap.selectAll('.region')
-      .classed('region-highlight', false);
-
-    this.svgMap.selectAll('.region')
-      .classed('region-selected-highlight', false)
-      .attr('filter', null);
-  }
 
   private mapSizeChange(): void {
     const containerSvg = this.mapContainerHtmlElement!.nativeElement;
@@ -275,78 +233,15 @@ export class ServicesComponent implements OnInit, AfterViewInit {
     this.lastWidth = widthContainer;
     const isMobile = window.innerWidth < 768;
 
-    // Escala proporcional adaptativa
-    const scaleValue = isMobile ? widthContainer / 300 : widthContainer / 1150;
+    // aqui muevo el mapa a proporcion
+    const scaleValue = isMobile ? widthContainer / 400 : widthContainer / 1150;
     this.svgMap.attr('transform', `scale(${scaleValue})`);
 
-    // Ajuste de altura para asegurar proporción en móviles
+    // ajuste para los moviles
     const height = isMobile ? widthContainer * 0.6 : widthContainer * 0.5;
     boxSvg.setAttribute('height', `${height}`);
   }
 
-
-
-  private paintMapByData(): void {
-    if (!this.mapData || !this.mapData.listaVotacion) {
-      console.error("mapData or listaVotacion is undefined");
-      return;
-    }
-
-    this.mapData.listaVotacion.forEach(votacion => {
-      votacion.regiones?.forEach(region => {
-        const regionNode = this.svgMap.select(`#region-${region.ID}`);
-        if (!regionNode.empty()) {
-          regionNode.style('fill', votacion.color);
-          regionNode.classed('region-con-ganador', true);
-
-          Object.assign(regionNode.datum(), {
-            dataRegion: {
-              ID: region.ID,
-              Votos: votacion.votos,
-              Partidos: votacion.partidos,
-              Color: votacion.color
-            }
-          });
-        }
-      });
-    });
-  }
-
-  private highlightSingleSelected(idPath: any): void {
-
-    this.svgMap.selectAll('.region')
-      .classed('region-highlight', true);
-
-    const pathWinner = this.getPathById(idPath);
-    pathWinner.raise();
-    pathWinner.classed('region-selected-highlight', true)
-      .attr('filter', 'url(#drop-shadow)');
-  }
-
-  private highlightMultipleSelected(territorios: Territorio[] | Territorio): void {
-
-    if (!Array.isArray(territorios)) {
-      this.highlightSingleSelected(territorios.ID);
-      return;
-    }
-
-    const regiones = this.svgMap.selectAll('.region');
-    regiones.classed('region-selected-highlight', false)
-      .attr('filter', null);
-
-    if (territorios.length == 0) {
-      regiones.classed('region-highlight', false);
-      return;
-    }
-
-    regiones.classed('region-highlight', true);
-
-    territorios.forEach(ter => {
-      const pathWinner = this.getPathById(ter.ID);
-      pathWinner.classed('region-selected-highlight', true)
-        .attr('filter', 'url(#drop-shadow)');
-    });
-  }
 
 
   private createFilter(): void {
