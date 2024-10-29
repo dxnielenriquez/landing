@@ -1,0 +1,108 @@
+.years-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 5%;
+}
+
+.year-item {
+  border: 2px solid #D6B4FC;
+  background-color: #D6B4FC;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.year-item:hover {
+  background-color: #D6B4FC;
+  color: white;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.card-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.card {
+  border: 1px solid #D6B4FC;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-image {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card-text {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: auto;
+}
+
+
+.card-button {
+  border: 1px solid #D6B4FC;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 0.8em;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s ease;
+  background-color: #D6B4FC;
+}
+
+.card-button:hover {
+  background-color: #D6B4FC;
+  color: white;
+}
+
+@media (max-width: 410px) {
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .card-buttons {
+    gap: 5px;
+  }
+}
+
+@media (max-width: 352px) {
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}

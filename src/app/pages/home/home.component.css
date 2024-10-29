@@ -1,0 +1,115 @@
+.voting-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+  overflow: hidden;
+  position: relative;
+  padding: 1rem;
+}
+
+.urna-container {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-ine {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.ballot {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  width: 50px;
+  height: 70px;
+  background-color: #eaeaea;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateX(-50%) rotate(0deg);
+  animation: fall 3s infinite ease-in-out;
+  opacity: 0.9;
+  z-index: 3;
+}
+
+.ballot:before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 30px;
+  height: 5px;
+  background-color: #ddd;
+}
+
+.delay1 {
+  animation-delay: 1s;
+}
+
+.delay2 {
+  animation-delay: 0.1ms;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(150px) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+.text-center {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 0 1rem;
+  z-index: 1;
+}
+
+h1.display-3 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.btn.conoce {
+  background-color: #662481;
+  font-size: 1rem;
+  padding: 0.75rem 2rem;
+}
+
+@media (max-width: 600px) {
+  .urna-container {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  /* actas*/
+  .ballot {
+    width: 40px;
+    height: 60px;
+  }
+
+  .text-center h1 {
+    font-size: 1.5rem;
+  }
+
+  .btn.conoce {
+    font-size: 0.875rem;
+    padding: 0.5rem 1.5rem;
+  }
+}

@@ -31,23 +31,23 @@ const routes: Routes = [
         component: DashboardComponent,
       },
       {
-        path: 'services',
+        path: 'nosotros',
         component: ServicesComponent,
       },
       {
-        path: 'portafolio',
+        path: 'soluciones',
         component: PortafolioComponent,
       },
       {
-        path: 'about',
+        path: 'beneficios',
         component: AboutComponent,
       },
       {
-        path: 'team',
+        path: 'casos-exito',
         component: TeamComponent,
       },
       {
-        path: 'contact',
+        path: 'contacto',
         component: ContactComponent,
       },
       {
