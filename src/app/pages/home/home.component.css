@@ -6,6 +6,7 @@
   background-color: #f2f2f2;
   overflow: hidden;
   position: relative;
+  padding: 1rem;
 }
 
 .urna-container {
@@ -23,18 +24,6 @@
   display: block;
   position: relative;
   z-index: 1;
-}
-
-.slot {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 10px;
-  background-color: #222;
-  border-radius: 5px;
-  z-index: 2;
 }
 
 .ballot {
@@ -65,8 +54,9 @@
 .delay1 {
   animation-delay: 1s;
 }
+
 .delay2 {
-  animation-delay: 2s;
+  animation-delay: 0.1ms;
 }
 
 @keyframes fall {
@@ -83,6 +73,43 @@
   }
 }
 
-.conoce {
+.text-center {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 0 1rem;
+  z-index: 1;
+}
+
+h1.display-3 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.btn.conoce {
   background-color: #662481;
+  font-size: 1rem;
+  padding: 0.75rem 2rem;
+}
+
+@media (max-width: 600px) {
+  .urna-container {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  /* actas*/
+  .ballot {
+    width: 40px;
+    height: 60px;
+  }
+
+  .text-center h1 {
+    font-size: 1.5rem;
+  }
+
+  .btn.conoce {
+    font-size: 0.875rem;
+    padding: 0.5rem 1.5rem;
+  }
 }
